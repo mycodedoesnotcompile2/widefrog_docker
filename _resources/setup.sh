@@ -60,7 +60,7 @@ echo "[+] Cloning Widefrog..."
 git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
 # source bashrc
-source "/root/.bashrc"
+. "/root/.bashrc"
 
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
