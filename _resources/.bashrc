@@ -168,6 +168,7 @@ sstop()    { _sctl stop "$1" && sstatus "$1"; }
 srestart() { _sctl restart "$1" && sstatus "$1"; }
 sstatus()  { _sctl status "$1"; }
 
-export WORKON_HOME=~/.virtualenvs
+export WORKON_HOME="/opt/widefrog"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+workon venvwidefrog
