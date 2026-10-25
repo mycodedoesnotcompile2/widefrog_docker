@@ -13,7 +13,6 @@ LABEL \
     org.opencontainers.image.url="${PROJECT_URL}"
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV WORKON_HOME=/root/.virtualenvs
 ENV LANG=C.utf8
 ENV LC_CTYPE=C.utf8
 
