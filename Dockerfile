@@ -1,5 +1,17 @@
 FROM debian:stable-slim
 
+ARG DOCKER_IMAGE_VERSION=1.0
+ARG PROJECT_NAME="widefrog"
+ARG PROJECT_URL="https://github.com/mycodedoesnotcompile2/widefrog_docker"
+
+LABEL \
+    org.opencontainers.image.title="${PROJECT_NAME}" \
+    org.opencontainers.image.description="${PROJECT_NAME} docker image" \
+    org.opencontainers.image.version="${DOCKER_IMAGE_VERSION:-unknown}" \
+    org.opencontainers.image.documentation="${PROJECT_URL}" \
+    org.opencontainers.image.source="${PROJECT_URL}" \
+    org.opencontainers.image.url="${PROJECT_URL}"
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV WORKON_HOME=/root/.virtualenvs
 ENV LANG=C.utf8
@@ -10,8 +22,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy local customization files
 COPY _resources/.bashrc /root/.bashrc
 COPY _resources/.vimrc /root/.vimrc
+COPY _resources/.inputrc /etc/inputrc
 COPY _resources/packages_to_add.txt /tmp/packages_to_add.txt
-COPY _resources/inputrc /etc/inputrc
+COPY _resources/setup.sh /tmp/setup.sh
 
 # enable non-free and contrib
 RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
@@ -34,6 +47,7 @@ RUN dpkg-query -W -f='${Installed-Size}\t${Package}\t${Version}\n' \
     | sort -nr \
     | column -t
     
+RUN chmod +x /tmp/setup.sh && /tmp/setup.sh
 
 # Final cleanup
 RUN apt-get clean && \
