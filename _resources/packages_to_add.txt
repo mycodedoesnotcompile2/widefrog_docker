@@ -9,9 +9,7 @@ ffmpeg
 firefox-esr
 htop
 mediainfo
-mediainfo-gui
 mkvtoolnix
-mkvtoolnix-gui
 moreutils
 net-tools
 nmon
