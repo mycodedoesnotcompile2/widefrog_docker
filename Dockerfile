@@ -34,3 +34,16 @@ RUN set -eux; \
 RUN dpkg-query -W -f='${Installed-Size}\t${Package}\t${Version}\n' \
     | sort -nr \
     | column -t
+    
+
+# Final cleanup
+RUN apt-get clean && \
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /var/cache/apt/* \
+        /tmp/* \
+        /var/tmp/* \
+        /var/log/* \
+        /root/.cache
+
+CMD ["/bin/bash"]
