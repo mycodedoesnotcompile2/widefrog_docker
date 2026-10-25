@@ -2,6 +2,7 @@
 aria2
 bash
 bmon
+bsdextrautils
 curl
 fd-find
 ffmpeg
