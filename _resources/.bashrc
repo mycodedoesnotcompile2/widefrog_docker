@@ -172,3 +172,4 @@ export WORKON_HOME="/opt/widefrog/virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 workon venvwidefrog
+alias widefrog='python /opt/widefrog/widefrog.py'
