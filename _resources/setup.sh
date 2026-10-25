@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
