@@ -1,3 +1,4 @@
+7zip
 aria2
 bash
 bmon
@@ -10,12 +11,14 @@ mediainfo
 mediainfo-gui
 mkvtoolnix
 mkvtoolnix-gui
+moreutils
 net-tools
+nmon
 python3
 python3-pip
 python3-venv
 unrar
 unzip
-vimrc
+vim
 wget
 zip
