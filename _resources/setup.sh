@@ -1,6 +1,12 @@
 #!/bin/bash
+set -eo pipefail
+
+WORKON_HOME="/opt/widefrog/virtualenvs"
+VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
+WIDEFROG_VENV_PATH="$WORKON_HOME/venvwidefrog"
 
 # Must run as root
 if [ "$(id -u)" -ne 0 ]; then
@@ -56,23 +62,13 @@ rm -rf "/tmp/n_m3u8dl-re.tar.gz" /tmp/packager-linux-"$arch" "/tmp/n_m3u8dl-extr
 echo "[+] Cloning widefrog..."
 git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
-# Initialize virtualenvwrapper explicitly
-export WORKON_HOME="/opt/widefrog/virtualenvs"
-export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
-
-# virtualenvwrapper 4.8.4 initialization expects unset variables
-# to be allowed, so temporarily disable Bash nounset.
-set +u
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
-#python3 -m venv "$WIDEFROG_VENV_PATH"
-mkvirtualenv -p "$VIRTUALENVWRAPPER_PYTHON" venvwidefrog
+mkdir -p "$WORKON_HOME"
+python3 -m venv "$WIDEFROG_VENV_PATH"
 
 echo "[+] Activating virtual environment..."
-#. "$WIDEFROG_VENV_PATH/bin/activate"
-workon venvwidefrog
+. "$WIDEFROG_VENV_PATH/bin/activate"
 
 # Enter Widefrog directory
 cd "$WIDEFROG_INSTALL_PATH"
