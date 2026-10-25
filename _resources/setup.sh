@@ -89,5 +89,5 @@ python widefrog.py
 echo "[+] Installation complete!"
 echo "[+] N_m3u8DL-RE: /usr/local/bin/N_m3u8DL-RE"
 echo "[+] Shaka Packager: /usr/local/bin/shaka-packager"
-echo "[+] widefrog virtual environment: $WIDEFROG_VENV_PATH"
+#echo "[+] widefrog virtual environment: $WIDEFROG_VENV_PATH"
 echo "[+] widefrog location: $WIDEFROG_INSTALL_PATH"
