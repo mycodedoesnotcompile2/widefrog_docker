@@ -1,8 +1,5 @@
 #!/bin/bash
-#set -eo pipefail
-
-set -Eeuxo pipefail
-trap 'rc=$?; echo "[ERROR] Line $LINENO: command failed (exit $rc)" >&2' ERR
+set -eo pipefail
 
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
@@ -69,7 +66,6 @@ export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 # to be allowed, so temporarily disable Bash nounset.
 set +u
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-set -u
 
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
