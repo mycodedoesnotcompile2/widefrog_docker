@@ -34,7 +34,7 @@ RUN set -eux; \
     APT="apt-get -y -q --no-install-recommends -o=Dpkg::Use-Pty=0 -o=Dpkg::Options::=--force-confdef -o=Dpkg::Options::=--force-confold"; \
     $APT update; \
     
-    $APT install ca-certificates wget; \
+    $APT install ca-certificates gpgv wget; \
     $APT full-upgrade; \
     . /etc/os-release; \
     
