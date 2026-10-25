@@ -9,7 +9,6 @@ fd-find
 ffmpeg
 firefox-esr
 git
-gpgv
 htop
 mediainfo
 mkvtoolnix
