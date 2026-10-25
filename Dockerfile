@@ -52,9 +52,8 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 
 
-RUN dpkg-query -W -f='${Installed-Size}\t${Package}\t${Version}\n' \
-    | sort -nr \
-    | column -t
+RUN dpkg-query -W -f='${Package}\t${Version}\t${Installed-Size}\n' \
+    | sort | column -t
     
 RUN chmod +x /tmp/setup.sh && /tmp/setup.sh
 
