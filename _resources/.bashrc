@@ -162,7 +162,7 @@ fi
 alias dmesg='dmesg -T'
 
 # systemctl shortcuts
-_sctl() { systemctl "$@" --no-pager -l }
+_sctl() { systemctl "$@" --no-pager -l; }
 sstart()   { _sctl start "$1" && sstatus "$1"; }
 sstop()    { _sctl stop "$1" && sstatus "$1"; }
 srestart() { _sctl restart "$1" && sstatus "$1"; }
