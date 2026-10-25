@@ -19,16 +19,16 @@ $ vim app_files/config.json
 # Download content
 $ python widefrog.py "url"
 
-# If you encounter errors
+# If you encounter errors, add "--debug"
 $ python widefrog.py --debug "url"
 
-# If you need to bypass geo-restriction:
+# If you need to bypass geo-restrictions
 Edit "/etc/tor/torrc" and add a "ExitNodes" directive, for instance "ExitNodes {es}" to appear from Spain
 $ vim "/etc/tor/torrc"
 $ service tor start
 $ torsocks python widefrog.py "url"
 
-# Finally, the downloaded media in is "/opt/widefrog/media/"
+# Finally, the downloaded medias are in "/opt/widefrog/media/"
 $ ls /opt/widefrog/media/
 ```
 
