@@ -70,7 +70,7 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
 #python3 -m venv "$WIDEFROG_VENV_PATH"
-mkvirtualenv -p python3 venvwidefrog
+mkvirtualenv -p "$VIRTUALENVWRAPPER_PYTHON" venvwidefrog
 
 echo "[+] Activating virtual environment..."
 #. "$WIDEFROG_VENV_PATH/bin/activate"
