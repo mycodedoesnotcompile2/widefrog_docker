@@ -61,6 +61,23 @@ git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 # source bashrc
 source "/root/.bashrc"
 
+echo "=== DEBUG virtualenvwrapper ==="
+echo "Python: $(command -v python3)"
+echo "PATH: $PATH"
+echo "WORKON_HOME: ${WORKON_HOME:-<unset>}"
+
+echo "--- Package status ---"
+dpkg-query -W virtualenvwrapper python3-virtualenv 2>&1
+
+echo "--- Initialization script ---"
+ls -l /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+
+echo "--- Function status ---"
+declare -F mkvirtualenv || true
+declare -F workon || true
+
+echo "=== END DEBUG ==="
+
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
 #python3 -m venv "$WIDEFROG_VENV_PATH"
