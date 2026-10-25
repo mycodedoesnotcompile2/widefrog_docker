@@ -22,23 +22,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Free runner disk space
-        shell: bash
-        run: |
-          set -eux
+      # - name: Free runner disk space
+      #   shell: bash
+      #   run: |
+      #     set -eux
       
-          echo "[+] before cleanup"
-          sudo fdisk -l
-          sudo df -h
+      #     echo "[+] before cleanup"
+      #     sudo fdisk -l
+      #     sudo df -h
       
-          docker system df
-          docker system prune -af >/dev/null || true
-          docker builder prune -af >/dev/null || true
+      #     docker system df
+      #     docker system prune -af >/dev/null || true
+      #     docker builder prune -af >/dev/null || true
       
-          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/julia* /opt/hostedtoolcache /opt/microsoft /opt/google /opt/az /usr/local/.ghcup /usr/share/swift /usr/lib/jvm /usr/local/share/chromium /usr/local/share/powershell /usr/local/graalvm/ /usr/local/lib/node_modules
+      #     sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/julia* /opt/hostedtoolcache /opt/microsoft /opt/google /opt/az /usr/local/.ghcup /usr/share/swift /usr/lib/jvm /usr/local/share/chromium /usr/local/share/powershell /usr/local/graalvm/ /usr/local/lib/node_modules
       
-          echo "[+] after cleanup"
-          df -h
+      #     echo "[+] after cleanup"
+      #     df -h
           
       - name: Checkout
         uses: actions/checkout@v7
