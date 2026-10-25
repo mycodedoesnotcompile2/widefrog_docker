@@ -56,7 +56,7 @@ install -m 0755 /tmp/packager-linux-"$arch" "/usr/local/bin/shaka-packager"
 rm -rf "/tmp/n_m3u8dl-re.tar.gz" /tmp/packager-linux-"$arch" "/tmp/n_m3u8dl-extracted"
 
 # Clone Widefrog
-echo "[+] Cloning Widefrog..."
+echo "[+] Cloning widefrog..."
 git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
 # source bashrc
