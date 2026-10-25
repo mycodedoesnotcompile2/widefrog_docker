@@ -59,12 +59,17 @@ rm -rf "/tmp/n_m3u8dl-re.tar.gz" /tmp/packager-linux-"$arch" "/tmp/n_m3u8dl-extr
 echo "[+] Cloning Widefrog..."
 git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
+# source bashrc
+source "/root/.bashrc"
+
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
-python3 -m venv "$WIDEFROG_VENV_PATH"
+#python3 -m venv "$WIDEFROG_VENV_PATH"
+mkvirtualenv -p python3 venvwidefrog
 
 echo "[+] Activating virtual environment..."
-. "$WIDEFROG_VENV_PATH/bin/activate"
+#. "$WIDEFROG_VENV_PATH/bin/activate"
+workon venvwidefrog
 
 # Enter Widefrog directory
 cd "$WIDEFROG_INSTALL_PATH"
