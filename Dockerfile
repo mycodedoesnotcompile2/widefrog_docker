@@ -31,7 +31,7 @@ RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmwa
 
 # Install additional packages
 RUN set -eux; \
-    APT="apt-get -y -q --no-install-recommends -o=Dpkg::Use-Pty=0 -o=Dpkg::Options::=--force-confdef -o=Dpkg::Options::=--force-confold"; \
+    APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"; \
     $APT update; \
     
     $APT install ca-certificates gpgv wget; \
