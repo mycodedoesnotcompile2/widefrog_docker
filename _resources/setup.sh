@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eo pipefail
-trap 'rc=$?; echo "[ERROR] Exit code $rc at line $LINENO: $BASH_COMMAND" >&2' ERR
+set -x
+trap 'rc=$?; echo "[ERROR] Exit code $rc: $BASH_COMMAND" >&2' ERR
 
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
@@ -72,6 +73,13 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 echo "[+] Creating Python virtual environment..."
 #python3 -m venv "$WIDEFROG_VENV_PATH"
 mkvirtualenv -p "$VIRTUALENVWRAPPER_PYTHON" venvwidefrog
+
+echo "=== DEBUG: after mkvirtualenv ==="
+echo "Exit status: $?"
+ls -la "$WORKON_HOME/venvwidefrog/bin/"
+echo "=== DEBUG: activating environment ==="
+workon venvwidefrog
+echo "=== DEBUG: activation succeeded ==="
 
 echo "[+] Activating virtual environment..."
 #. "$WIDEFROG_VENV_PATH/bin/activate"
