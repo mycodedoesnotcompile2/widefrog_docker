@@ -59,7 +59,7 @@ RUN dpkg-query -W -f='${Installed-Size}\t${Package}\t${Version}\n' \
     
 RUN chmod +x /tmp/setup.sh && /tmp/setup.sh
 
-RUN set -eux; \
+RUN set -eu; \
     SERVICES_TO_DISABLE="\
     rpcbind.socket \
     rpcbind \
