@@ -1,4 +1,5 @@
 set visualbell
+colorscheme desert
 set t_vb=
 set syntax=c
 syntax on
