@@ -64,7 +64,12 @@ git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 # Initialize virtualenvwrapper explicitly
 export WORKON_HOME="/opt/widefrog/virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+
+# virtualenvwrapper 4.8.4 initialization expects unset variables
+# to be allowed, so temporarily disable Bash nounset.
+set +u
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+set -u
 
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
