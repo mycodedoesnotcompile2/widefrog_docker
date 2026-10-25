@@ -1,5 +1,8 @@
 #!/bin/bash
-set -eo pipefail
+#set -eo pipefail
+
+set -Eeuxo pipefail
+trap 'rc=$?; echo "[ERROR] Line $LINENO: command failed (exit $rc)" >&2' ERR
 
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
