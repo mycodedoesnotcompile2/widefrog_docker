@@ -56,7 +56,6 @@ RUN dpkg-query -W -f='${Package}\t${Version}\t${Installed-Size}\n' \
     | sort | column -t
 
 RUN chmod +x /tmp/setup.sh && bash /tmp/setup.sh
-#RUN chmod +x /tmp/setup.sh && /tmp/setup.sh
 
 RUN set -eu; \
     SERVICES_TO_DISABLE="\
