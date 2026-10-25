@@ -11,7 +11,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY _resources/.bashrc /root/.bashrc
 COPY _resources/.vimrc /root/.vimrc
 COPY _resources/packages_to_add.txt /tmp/packages_to_add.txt
-COPY _resources/python_common.txt /tmp/python_common.txt
 COPY _resources/inputrc /etc/inputrc
 
 # enable non-free and contrib
