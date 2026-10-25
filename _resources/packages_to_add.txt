@@ -26,6 +26,7 @@ socat
 tar
 tor
 torsocks
+tor-geoipdb
 vim
 virtualenvwrapper
 wireguard
