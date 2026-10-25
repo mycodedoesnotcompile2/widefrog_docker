@@ -61,6 +61,7 @@ git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
 # source bashrc
 . "/root/.bashrc"
+. "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
