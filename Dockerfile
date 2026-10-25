@@ -49,6 +49,60 @@ RUN dpkg-query -W -f='${Installed-Size}\t${Package}\t${Version}\n' \
     
 RUN chmod +x /tmp/setup.sh && /tmp/setup.sh
 
+RUN set -eux; \
+    SERVICES_TO_DISABLE="\
+    rpcbind.socket \
+    rpcbind \
+    rpcbind.service \
+    rpc-statd-notify.service \
+    xrdp \
+    systemd-resolved.service \
+    lvm2-monitor.service \
+    mdadm-shutdown.service \
+    tor.service \
+    lvm2-lvmpolld.socket \
+    nfs-client.target \
+    remote-fs.target \
+    exim4.service \
+    exim4-base.timer \
+    fstrim.timer \
+    lm-sensors.service \
+    tftpd-hpa.service \
+    pmcd.service \
+    pmie.service \
+    pmproxy.service \
+    stunnel.target \
+    apt-daily-upgrade.timer \
+    apt-daily.timer \
+    e2scrub_all.timer \
+    dpkg-db-backup.timer \
+    mdcheck_continue.timer \
+    mdcheck_start.timer \
+    mdmonitor-oneshot.timer \
+    nvmf-autoconnect.service \
+    nvmefc-boot-connections.service \
+    openvpn.service \
+    pmlogger.service \
+    system-bcachefsck.slice \
+    system-xfs_scrub.slice \
+    iscsid.socket \
+    dm-event.socket \
+    bcachefsck_all.timer \
+    xfs_scrub_all.timer \
+    atop-rotate.timer \
+    atopacct.service \
+    atop.service \
+    multipathd.service \
+    pcscd.socket \
+    tpm-dev.path \
+    tpm-udev.path \
+    hardinfo2.service \
+    atd.service"; \
+    \
+    for service in ${SERVICES_TO_DISABLE}; do \
+        ln -sf /dev/null "/etc/systemd/system/${service}"; \
+    done
+
 # Final cleanup
 RUN apt-get clean && \
     rm -rf \
