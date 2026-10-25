@@ -3,7 +3,6 @@ set -eo pipefail
 
 WIDEFROG_REPOSITORY="https://github.com/mycodedoesnotcompile2/widefrog_fork"
 WIDEFROG_INSTALL_PATH="/opt/widefrog"
-WIDEFROG_VENV_PATH="$WIDEFROG_INSTALL_PATH/venvwidefrog"
 
 # Must run as root
 if [ "$(id -u)" -ne 0 ]; then
@@ -89,5 +88,4 @@ python widefrog.py
 echo "[+] Installation complete!"
 echo "[+] N_m3u8DL-RE: /usr/local/bin/N_m3u8DL-RE"
 echo "[+] Shaka Packager: /usr/local/bin/shaka-packager"
-#echo "[+] widefrog virtual environment: $WIDEFROG_VENV_PATH"
 echo "[+] widefrog location: $WIDEFROG_INSTALL_PATH"
