@@ -22,7 +22,7 @@ else
     exit 1
 fi
 
-echo "Detected architecture: $arch"
+echo "[+] Detected architecture: $arch"
 
 # Configure download URLs
 N_m3u8="https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.6.0-beta/N_m3u8DL-RE_v0.6.0-beta_linux-${arch}_20260629.tar.gz"
@@ -81,8 +81,8 @@ chmod +x terminal/*
 echo "[+] Launching Widefrog..."
 python widefrog.py
 
-echo "Installation complete!"
-echo "N_m3u8DL-RE: /usr/local/bin/N_m3u8DL-RE"
-echo "Shaka Packager: /usr/local/bin/shaka-packager"
-echo "widefrog virtual environment: $WIDEFROG_VENV_PATH"
-echo "widefrog location: $WIDEFROG_INSTALL_PATH"
+echo "[+] Installation complete!"
+echo "[+] N_m3u8DL-RE: /usr/local/bin/N_m3u8DL-RE"
+echo "[+] Shaka Packager: /usr/local/bin/shaka-packager"
+echo "[+] widefrog virtual environment: $WIDEFROG_VENV_PATH"
+echo "[+] widefrog location: $WIDEFROG_INSTALL_PATH"
