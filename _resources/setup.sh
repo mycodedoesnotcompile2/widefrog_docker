@@ -75,7 +75,7 @@ cd "$WIDEFROG_INSTALL_PATH"
 
 # Install requirements
 echo "[+] Installing Python requirements..."
-grep -v '^#' requirements.txt | xargs -n 1 pip install
+grep -v '^#' requirements.txt | xargs -n 1 pip install --no-cache-dir
 
 # Make terminal scripts executable
 echo "[+] Setting terminal scripts as executable..."
