@@ -1,6 +1,7 @@
 7zip
 aria2
 bash
+bento4
 bmon
 bsdextrautils
 ca-certificates
