@@ -33,7 +33,17 @@ RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmwa
 RUN set -eux; \
     APT="apt-get -y -q --no-install-recommends -o=Dpkg::Use-Pty=0 -o=Dpkg::Options::=--force-confdef -o=Dpkg::Options::=--force-confold"; \
     $APT update; \
+    
+    $APT install ca-certificates wget; \
     $APT full-upgrade; \
+    . /etc/os-release; \
+    
+    wget -q "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb" -O "/tmp/deb-multimedia-keyring.deb"; \
+    dpkg -i "/tmp/deb-multimedia-keyring.deb"; \
+    printf 'Types: deb\nURIs: https://www.deb-multimedia.org\nSuites: %s\nComponents: main non-free\nSigned-By: /usr/share/keyrings/deb-multimedia-keyring.pgp\n' \
+        "$VERSION_CODENAME" > /etc/apt/sources.list.d/deb-multimedia.sources; \
+    
+    $APT update; \
     $APT install $(cat /tmp/packages_to_add.txt); \
     rm -f /tmp/packages_to_add.txt; \
     $APT purge 'exim4*' 'bsd-mailx*'; \
