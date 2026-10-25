@@ -22,6 +22,7 @@ python3-venv
 unrar
 unzip
 tar
+tor
 vim
 wget
 zip
