@@ -58,25 +58,10 @@ rm -rf "/tmp/n_m3u8dl-re.tar.gz" /tmp/packager-linux-"$arch" "/tmp/n_m3u8dl-extr
 echo "[+] Cloning widefrog..."
 git clone --depth=1 "$WIDEFROG_REPOSITORY" "$WIDEFROG_INSTALL_PATH"
 
-# source bashrc
-source "/root/.bashrc"
-
-echo "=== DEBUG virtualenvwrapper ==="
-echo "Python: $(command -v python3)"
-echo "PATH: $PATH"
-echo "WORKON_HOME: ${WORKON_HOME:-<unset>}"
-
-echo "--- Package status ---"
-dpkg-query -W virtualenvwrapper python3-virtualenv 2>&1
-
-echo "--- Initialization script ---"
-ls -l /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-
-echo "--- Function status ---"
-declare -F mkvirtualenv || true
-declare -F workon || true
-
-echo "=== END DEBUG ==="
+# Initialize virtualenvwrapper explicitly
+export WORKON_HOME="/opt/widefrog/virtualenvs"
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 # Create Python virtual environment inside the repository
 echo "[+] Creating Python virtual environment..."
