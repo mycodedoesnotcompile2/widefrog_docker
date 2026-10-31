@@ -45,3 +45,4 @@ wget
 wget2
 xxd
 zip
+zstd
