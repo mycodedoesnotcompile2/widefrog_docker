@@ -5,6 +5,7 @@ Ready-made docker image of widefrog tool by user `2nHxWW6GkN1l916N3ayz8HQoi` fro
 Features
 --------
 Based on Debian 13
+Built for [`x64` and `arm64`](https://github.com/mycodedoesnotcompile2/widefrog_docker/packages)
 
 Usage
 -----
@@ -30,6 +31,9 @@ $ torsocks python widefrog.py "url"
 
 # Finally, the downloaded medias are in "/opt/widefrog/media/"
 $ ls /opt/widefrog/media/
+
+# FYI, widefrog is installed in a Python virtualenv, if you get lost in the middle, just use "workoun venvwidefrog"
+# Also, a bash alias named "widefrog" is provided.
 ```
 
 See also
