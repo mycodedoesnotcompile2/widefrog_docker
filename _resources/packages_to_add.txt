@@ -1,5 +1,7 @@
 7zip
 aria2
+atop
+axel
 bash
 bento4
 bmon
@@ -11,6 +13,9 @@ ffmpeg
 firefox-esr
 git
 htop
+iftop
+jq
+less
 mediainfo
 mkvtoolnix
 moreutils
@@ -19,9 +24,11 @@ nmon
 openssh-client
 openssh-server
 parallel
+pigz
 python3
 python3-pip
 python3-venv
+rsync
 unrar
 unzip
 socat
@@ -33,4 +40,6 @@ vim
 virtualenvwrapper
 wireguard
 wget
+wget2
+xxd
 zip
