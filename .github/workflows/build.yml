@@ -115,32 +115,53 @@ jobs:
           TAG: ${{ steps.meta.outputs.tag }}
         run: |
           docker buildx imagetools create \
+            --annotation "index:org.opencontainers.image.description=${{ env.IMAGE_NAME }} docker image" \
             --tag "$IMAGE:latest" \
             --tag "$IMAGE:$TAG" \
             "$IMAGE:build-$RUN_ID-amd64" \
             "$IMAGE:build-$RUN_ID-arm64"
-
+      
       - name: Remove temporary architecture tags
         env:
-          IMAGE: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
-          RUN_ID: ${{ github.run_id }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           PACKAGE: ${{ env.IMAGE_NAME }}
+          RUN_ID: ${{ github.run_id }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
           set -euo pipefail
 
-          for arch in amd64 arm64; do
-            tag="build-${RUN_ID}-${arch}"
+          # Determine GitHub owner type
+          OWNER_TYPE=$(gh api "/users/${OWNER}" --jq '.type')
 
-            echo "Removing temporary tag: $tag"
+          if [[ "$OWNER_TYPE" == "Organization" ]]; then
+            API_PREFIX="orgs"
+          else
+            API_PREFIX="users"
+          fi
+          
+          BASE_API="/${API_PREFIX}/${OWNER}/packages/container/${PACKAGE}/versions"
+          
+          for ARCH in amd64 arm64; do
+            TAG="build-${RUN_ID}-${ARCH}"
 
-            gh api \
-              --method DELETE \
-              "/orgs/${OWNER}/packages/container/${PACKAGE}/versions" \
-              -f package_type=container \
-              -f tag_name="$tag" \
-              2>/dev/null || true
+            echo "Removing temporary tag: ${TAG}"
+
+            VERSION_IDS=$(echo "$VERSIONS" | jq -r --arg tag "$TAG" '.[] | select(.metadata.container.tags[]? == $tag) | .id')
+
+            if [[ -z "$VERSION_IDS" ]]; then
+              echo "Tag not found or already removed: ${TAG}"
+              continue
+            fi
+
+            while IFS= read -r VERSION_ID; do
+              [[ -z "$VERSION_ID" ]] && continue
+
+              gh api --method DELETE \
+                "${BASE_API}/${VERSION_ID}"
+
+              echo "Successfully deleted package version: ${VERSION_ID}"
+            done <<< "$VERSION_IDS"
           done
 
   cleanup:
