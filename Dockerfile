@@ -29,8 +29,8 @@ COPY _resources/setup.sh /tmp/setup.sh
 RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
 
 # Install additional packages
+ARG APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
 RUN set -eux; \
-    APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"; \
     $APT update; \
     $APT install build-essential ca-certificates gpgv wget; \
     $APT full-upgrade; \
@@ -53,8 +53,7 @@ RUN dpkg-query -W -f='${Package}\t${Version}\t${Installed-Size}\n' \
     | sort | column -t
 
 RUN chmod +x /tmp/setup.sh && bash /tmp/setup.sh && \
-    APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"; \
-    $APT purge -y build-essential; \
+    $APT purge build-essential; \
     $APT autoremove --purge; \
     $APT clean; \
     rm -rf /var/lib/apt/lists/*
