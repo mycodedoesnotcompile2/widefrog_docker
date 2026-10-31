@@ -4,8 +4,8 @@ Ready-made docker image of widefrog tool by user `2nHxWW6GkN1l916N3ayz8HQoi` fro
 
 Features
 --------
-Based on Debian 13
-Built for [`x64` and `arm64`](https://github.com/mycodedoesnotcompile2/widefrog_docker/packages)
+- Based on Debian 13  
+- Built for [`x64` and `arm64`](https://github.com/mycodedoesnotcompile2/widefrog_docker/packages)
 
 Usage
 -----
