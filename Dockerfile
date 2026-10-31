@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-ARG DOCKER_IMAGE_VERSION=1.0
+ARG DOCKER_IMAGE_VERSION=1.1
 ARG PROJECT_NAME="widefrog"
 ARG PROJECT_URL="https://github.com/mycodedoesnotcompile2/widefrog_docker"
 
