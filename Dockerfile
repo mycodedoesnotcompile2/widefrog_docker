@@ -32,7 +32,7 @@ RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmwa
 RUN set -eux; \
     APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"; \
     $APT update; \
-    $APT install ca-certificates gpgv wget; \
+    $APT install build-essential ca-certificates gpgv wget; \
     $APT full-upgrade; \
     . /etc/os-release; \
     wget -q "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb" -O "/tmp/deb-multimedia-keyring.deb"; \
@@ -52,7 +52,12 @@ RUN set -eux; \
 RUN dpkg-query -W -f='${Package}\t${Version}\t${Installed-Size}\n' \
     | sort | column -t
 
-RUN chmod +x /tmp/setup.sh && bash /tmp/setup.sh
+RUN chmod +x /tmp/setup.sh && bash /tmp/setup.sh && \
+    APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"; \
+    $APT purge -y build-essential; \
+    $APT autoremove --purge; \
+    $APT clean; \
+    rm -rf /var/lib/apt/lists/*
 
 RUN set -eu; \
     SERVICES_TO_DISABLE="\
