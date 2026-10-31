@@ -11,7 +11,10 @@ Usage
 -----
 ```
 # Execute the docker image
-$ docker run -it ghcr.io/mycodedoesnotcompile2/widefrog:latest
+$ docker run -it "ghcr.io/mycodedoesnotcompile2/widefrog:latest"
+
+# If you want to mount the widefrog output media folder on your host
+$ docker run -itd -v "/tmp/:/opt/widefrog/media" "ghcr.io/mycodedoesnotcompile2/widefrog:latest"
 
 # Provide your credentials for the platform you want to download from
 $ cd /opt/widefrog
