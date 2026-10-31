@@ -142,13 +142,12 @@ jobs:
           
           BASE_API="/${API_PREFIX}/${OWNER}/packages/container/${PACKAGE}/versions"
           
+          VERSIONS=$(gh api --paginate "${BASE_API}?per_page=100")
+          
           for ARCH in amd64 arm64; do
             TAG="build-${RUN_ID}-${ARCH}"
-
             echo "Removing temporary tag: ${TAG}"
-
             VERSION_IDS=$(echo "$VERSIONS" | jq -r --arg tag "$TAG" '.[] | select(.metadata.container.tags[]? == $tag) | .id')
-
             if [[ -z "$VERSION_IDS" ]]; then
               echo "Tag not found or already removed: ${TAG}"
               continue
@@ -156,10 +155,8 @@ jobs:
 
             while IFS= read -r VERSION_ID; do
               [[ -z "$VERSION_ID" ]] && continue
-
               gh api --method DELETE \
                 "${BASE_API}/${VERSION_ID}"
-
               echo "Successfully deleted package version: ${VERSION_ID}"
             done <<< "$VERSION_IDS"
           done
