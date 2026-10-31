@@ -1,8 +1,8 @@
 name: Build and publish
 on:
-  #workflow_dispatch:
-  schedule:
-    - cron: '22 02 * * *'
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '22 02 * * *'
 
 permissions:
   contents: read
