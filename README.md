@@ -32,7 +32,7 @@ $ torsocks python widefrog.py "url"
 # Finally, the downloaded medias are in "/opt/widefrog/media/"
 $ ls /opt/widefrog/media/
 
-# FYI, widefrog is installed in a Python virtualenv, if you get lost in the middle, just use "workoun venvwidefrog"
+# FYI, widefrog is installed in a Python virtualenv, if you get lost in the middle, just use "workon venvwidefrog"
 # Also, a bash alias named "widefrog" is provided.
 ```
 
@@ -40,4 +40,3 @@ See also
 --------
 * https://lafibre.info/tv-numerique-hd-3d/comment-telecharger-des-videos-sur-tf1-rmcbfmplay-ou-m6/
 * https://ideenquelle.be/posts/widefrog/
-
