@@ -16,8 +16,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.utf8
 ENV LC_CTYPE=C.utf8
 
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 # Copy local customization files
 COPY _resources/.bashrc /root/.bashrc
 COPY _resources/.vimrc /root/.vimrc
@@ -32,7 +30,7 @@ RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmwa
 ARG APT="apt-get -y -q --no-install-recommends -o APT::Keep-Downloaded-Packages=false -o Dpkg::Use-Pty=0 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
 RUN set -eux; \
     $APT update; \
-    $APT install build-essential ca-certificates gpgv wget; \
+    $APT install ca-certificates gpgv wget; \
     $APT full-upgrade; \
     . /etc/os-release; \
     wget -q "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb" -O "/tmp/deb-multimedia-keyring.deb"; \
@@ -52,7 +50,7 @@ RUN set -eux; \
 RUN dpkg-query -W -f='${Package}\t${Version}\t${Installed-Size}\n' \
     | sort | column -t
 
-RUN chmod +x /tmp/setup.sh && bash /tmp/setup.sh && \
+RUN chmod +x /tmp/setup.sh ; bash /tmp/setup.sh ; \
     $APT purge build-essential; \
     $APT autoremove --purge; \
     $APT clean; \
