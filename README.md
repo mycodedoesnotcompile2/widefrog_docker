@@ -24,7 +24,7 @@ $ python widefrog.py "url"
 $ python widefrog.py --debug "url"
 
 # If you need to bypass geo-restrictions
-Edit "/etc/tor/torrc" and add a "ExitNodes" directive, for instance "ExitNodes {es}" to appear from Spain
+# Edit "/etc/tor/torrc" and add a "ExitNodes" directive, for instance "ExitNodes {es}" to appear from Spain
 $ vim "/etc/tor/torrc"
 $ service tor start
 $ torsocks python widefrog.py "url"
